@@ -33,9 +33,10 @@ public class EXPLOD extends Application implements Initializable {
 
     @Override
     public void start(Stage stage) throws IOException {
+        APPLE.initImages();
         FXMLLoader fxmlLoader = new FXMLLoader(EXPLOD.class.getResource("title.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("explod3!!!");
+        stage.setTitle("about dang time.");
         stage.setScene(scene);
         stage.show();
     }
@@ -56,8 +57,8 @@ public class EXPLOD extends Application implements Initializable {
     @FXML
     public void play(ActionEvent e) throws IOException {
         resetMenuPane();
-        button0.setText("REBORN MODE");
-        button1.setText("Apple3D");
+        button0.setText("NORMAL MODE");
+        button1.setText("Apple3D (Preview)");
         button2.setText("CLASSIC MODE");
         button3.setText("BACK");
 
@@ -96,11 +97,10 @@ public class EXPLOD extends Application implements Initializable {
 
     @FXML
     public void playReborn(ActionEvent e) throws IOException {
-        APPLE.initImages();
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(EXPLOD.class.getResource("apple.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("reborn");
+        stage.setTitle("explod2!");
         stage.setScene(scene);
         stage.show();
     }
@@ -110,7 +110,7 @@ public class EXPLOD extends Application implements Initializable {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(EXPLOD.class.getResource("apple3D.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("apple3D");
+        stage.setTitle("nowin3D!");
         stage.setScene(scene);
         stage.show();
     }

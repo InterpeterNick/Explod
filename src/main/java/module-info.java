@@ -4,6 +4,7 @@ module xyz.nick.explod {
     requires javafx.fxml;
     requires kotlin.stdlib;
     requires javafx.graphics;
+    requires javafx.base;
 
 
     opens xyz.nick.explod to javafx.fxml;
