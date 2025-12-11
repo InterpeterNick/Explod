@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class EXPLOD extends Application implements Initializable {
+public class TITLE implements Initializable {
 
     @FXML private VBox menuPane;
     @FXML private Button button0;
@@ -30,16 +30,6 @@ public class EXPLOD extends Application implements Initializable {
     @FXML private Label title;
     @FXML private Label subtitle;
     @FXML private Label titleNumber;
-
-    @Override
-    public void start(Stage stage) throws IOException {
-        APPLE.initImages();
-        FXMLLoader fxmlLoader = new FXMLLoader(EXPLOD.class.getResource("title.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("about dang time.");
-        stage.setScene(scene);
-        stage.show();
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -98,7 +88,7 @@ public class EXPLOD extends Application implements Initializable {
     @FXML
     public void playReborn(ActionEvent e) throws IOException {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(EXPLOD.class.getResource("apple.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TITLE.class.getResource("apple.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("explod2!");
         stage.setScene(scene);
@@ -108,7 +98,7 @@ public class EXPLOD extends Application implements Initializable {
     @FXML
     public void play3D(ActionEvent e) throws IOException {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(EXPLOD.class.getResource("apple3D.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TITLE.class.getResource("apple3D.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("nowin3D!");
         stage.setScene(scene);
@@ -118,7 +108,7 @@ public class EXPLOD extends Application implements Initializable {
     @FXML
     public void playClassic(ActionEvent e) throws IOException {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(EXPLOD.class.getResource("classic.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TITLE.class.getResource("classic.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("classic");
         stage.setScene(scene);

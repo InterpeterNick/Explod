@@ -20,11 +20,6 @@ public class Apple3D implements Initializable {
 
     @FXML
     public void quitToTitle(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(EXPLOD.class.getResource("title.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("about dang time.");
-        stage.setScene(scene);
-        stage.show();
+        Explod2.quitToTitle(e);
     }
 }

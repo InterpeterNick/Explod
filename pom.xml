@@ -73,7 +73,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>xyz.nick.explod/xyz.nick.explod.EXPLOD</mainClass>
+                            <mainClass>xyz.nick.explod/xyz.nick.explod.TITLE</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
