@@ -2,8 +2,12 @@ package xyz.nick.explod;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point3D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -20,6 +24,7 @@ import java.util.stream.Stream;
 
 public class APPLE implements Initializable {
 
+    @FXML private AnchorPane root;
     @FXML private ImageView imag;
 
     private static Map<String, Integer> itemImageNameIndex;
@@ -28,6 +33,15 @@ public class APPLE implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        root.setOnKeyPressed((KeyEvent e) -> {
+            System.out.println(e.getCode());
+            if(e.getCode()== KeyCode.W){
+                rotateX();
+            }
+            if(e.getCode()== KeyCode.D){
+                rotateRight();
+            }
+        });
         imag.setImage(APPLE.defaultApple());
     }
 
@@ -45,7 +59,21 @@ public class APPLE implements Initializable {
     }
 
     @FXML
-    public void rotate(){
+    public void rotateRight(){
+        Point3D axis = imag.getRotationAxis();
+        axis = new Point3D(axis.getX(), axis.getY(), 1);
+        System.out.println(axis);
+        imag.setRotationAxis(axis);
+        double r = imag.getRotate();
+        imag.setRotate(r + 5);
+    }
+
+    @FXML
+    public void rotateX(){
+        Point3D axis = imag.getRotationAxis();
+        axis = new Point3D(1, axis.getY(), axis.getZ());
+        System.out.println(axis);
+        imag.setRotationAxis(axis);
         double r = imag.getRotate();
         imag.setRotate(r + 5);
     }
