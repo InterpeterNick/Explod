@@ -56,25 +56,42 @@ public class EXPLOD extends Application implements Initializable {
     @FXML
     public void play(ActionEvent e) throws IOException {
         resetMenuPane();
-        button0.setText("CLASSIC MODE");
-        button1.setText("REBORN MODE");
-        button2.setText("Apple3D");
+        button0.setText("REBORN MODE");
+        button1.setText("Apple3D");
+        button2.setText("CLASSIC MODE");
         button3.setText("BACK");
+
+        button0.onActionProperty().set((ActionEvent ev) -> {
+            try {
+                this.playReborn(ev);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        button2.onActionProperty().set((ActionEvent ev) -> {
+            try {
+                this.playClassic(ev);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        button3.onActionProperty().set((ActionEvent e1) -> {
+            resetMenuPane();
+            button0.setText("PLAY");
+            button0.onActionProperty().set((ActionEvent e2) -> {
+                try {
+                    this.play(e);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            button0.setVisible(true);
+        });
 
         button0.setVisible(true);
         button1.setVisible(true);
         button2.setVisible(true);
         button3.setVisible(true);
-    }
-
-    @FXML
-    public void play3D(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(EXPLOD.class.getResource("apple3D.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("apple3D");
-        stage.setScene(scene);
-        stage.show();
     }
 
     @FXML
@@ -88,11 +105,30 @@ public class EXPLOD extends Application implements Initializable {
         stage.show();
     }
 
+    @FXML
+    public void play3D(ActionEvent e) throws IOException {
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(EXPLOD.class.getResource("apple3D.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("apple3D");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    public void playClassic(ActionEvent e) throws IOException {
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(EXPLOD.class.getResource("classic.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("classic");
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void resetMenuPane(){
         ((Pane)  menuPane.getChildren().getFirst()).getChildren().forEach(
                 (Node node) -> {
-                    if(!(node instanceof Button)) return;
-                    Button b = (Button) node;
+                    if(!(node instanceof Button b)) return;
                     b.setVisible(false);
                     b.setText(null);
                     b.onActionProperty().set(null);

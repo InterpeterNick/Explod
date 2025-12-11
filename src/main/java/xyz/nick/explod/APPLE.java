@@ -44,6 +44,12 @@ public class APPLE implements Initializable {
         imag.setImage(APPLE.getRandomItemImage());
     }
 
+    @FXML
+    public void rotate(){
+        double r = imag.getRotate();
+        imag.setRotate(r + 5);
+    }
+
     public static void initImages(){
         itemImageIndex = new HashMap<>();
         itemImageNameIndex = new HashMap<>();
