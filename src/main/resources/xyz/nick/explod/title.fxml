@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xyz.nick.explod.EXPLOD">
+   <children>
+      <AnchorPane fx:id="titlePane" layoutX="97.0" layoutY="42.0" prefHeight="247.0" prefWidth="506.0">
+         <children>
+            <Label fx:id="title" layoutX="14.0" layoutY="28.0" prefHeight="219.0" prefWidth="445.0" text="Explod">
+               <font>
+                  <Font name="System Italic" size="150.0" />
+               </font>
+            </Label>
+            <Label fx:id="subtitle" layoutX="172.0" layoutY="165.0" prefHeight="58.0" prefWidth="158.0" rotate="0.5" text="reborn">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.34469698414658057">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.9052631855010986" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.42064368724823" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Label fx:id="titleNumber" layoutX="446.0" layoutY="-11.0" text="3" textFill="#4800ff">
+               <font>
+                  <Font name="System Bold" size="96.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <VBox fx:id="menuPane" layoutX="218.0" layoutY="289.0" prefHeight="156.0" prefWidth="236.0">
+         <children>
+            <FlowPane prefHeight="155.0" prefWidth="236.0" vgap="15.0">
+               <children>
+                  <Button fx:id="button0" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#play" prefHeight="29.0" prefWidth="236.0" text="PLACEHOLDER" textAlignment="CENTER" visible="false" />
+                  <Button fx:id="button1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#play" prefHeight="29.0" prefWidth="236.0" text="PLACEHOLDER" textAlignment="CENTER" visible="false" />
+                  <Button fx:id="button2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#play" prefHeight="29.0" prefWidth="236.0" text="PLACEHOLDER" textAlignment="CENTER" visible="false" />
+                  <Button fx:id="button3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#play" prefHeight="29.0" prefWidth="236.0" text="PLACEHOLDER" textAlignment="CENTER" visible="false" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </FlowPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
