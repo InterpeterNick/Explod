@@ -2,12 +2,11 @@ package xyz.nick.explod;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point3D;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -15,10 +14,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
+import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.*;
 
 public class APPLE implements Initializable {
@@ -26,42 +27,79 @@ public class APPLE implements Initializable {
     @FXML private AnchorPane root;
     @FXML private ImageView imag;
     @FXML private Label itemLabel;
+    @FXML private Label resetLabel;
     @FXML private Label explosionLabel;
+    @FXML private TextField itemTextField;
+    @FXML private Rectangle overlay;
+
+    private static int resets = 0;
+    private static int explods = 0;
+    private boolean hasExplod = false;
+    private static final LinkedList<Integer> indexOrder = new LinkedList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Initializing controller");
+        Explod2.initItemsAndExplosions();
         root.setOnKeyPressed((KeyEvent e) -> {
-            System.out.println(e.getCode());
             if(e.getCode()==KeyCode.Q) rotate();
             if(e.getCode()==KeyCode.E) explod();
             if(e.getCode()==KeyCode.R) reset();
         });
         reset();
         imag.setRotationAxis(new Point3D(0,0,0));
+        if(overlay!=null){
+            if(Settings.green){
+                overlay.opacityProperty().set(0.3);
+            } else {
+                overlay.opacityProperty().set(0.0);
+            }
+        }
+        if(Settings.DEBUG_MODE){
+            itemTextField.setVisible(true);
+        }
     }
 
     @FXML
     public void explod(){
+        if (hasExplod) return;
         Media sfx = Explod2.defaultExplosionSFX();
         MediaPlayer player = new MediaPlayer(sfx);
         imag.setImage(Explod2.defaultExplosionImage());
         player.play();
+        explods++;
+        hasExplod = true;
+        String labelText = "You have blown up %d items".formatted(explods);
+        explosionLabel.setText(labelText);
     }
 
     @FXML
-    public void reset(){
-        int index = Explod2.getRandomItemImageIndex();
-        Image image = Explod2.getItemImage(index);
+    public void reset() {
+        int index;
+        hasExplod = false;
+        resets++;
+        Path imagePath;
+        if(Settings.DEBUG_MODE && !Objects.equals(itemTextField.getText(), "")){
+            imagePath = Explod2.getItem(Integer.parseInt(itemTextField.getText()));
+        } else {
+            index = Explod2.getRandomItemIndex();
+            indexOrder.add(index);
+            imagePath = Explod2.getItem(index);
+        }
+        Image image = null;
+        try {
+            image = new Image(imagePath.toUri().toURL().toString());
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
         imag.setImage(image);
-        itemLabel.setText("Item: "+Explod2.getImageName(index));
+        itemLabel.setText(imagePath.getFileName().toString());
+        resetLabel.setText("resets: "+resets);
     }
 
     @FXML
     public void rotate(){
         Point3D axis;
         axis = new Point3D(1, 1, 1);
-        System.out.println(axis);
         imag.setRotationAxis(axis);
         double r = imag.getRotate();
         imag.setRotate(r+5);
@@ -70,5 +108,17 @@ public class APPLE implements Initializable {
     @FXML
     public void quitToTitle(ActionEvent e) throws IOException {
         Explod2.quitToTitle(e);
+    }
+
+    public static int getExplods(){
+        return explods;
+    }
+
+    public static int getResets(){
+        return resets;
+    }
+
+    public static LinkedList<Integer> getIndexOrder(){
+        return indexOrder;
     }
 }

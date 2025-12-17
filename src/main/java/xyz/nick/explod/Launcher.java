@@ -5,9 +5,7 @@ import javafx.application.Application;
 import java.util.Scanner;
 
 public class Launcher {
-    public static void main(String[] args) {
-        /*System.out.println("Please push ENTER to launch Explod 2.");
-        new Scanner(System.in).nextLine();*/
-        Explod2.launch(args);
+    public static void main(String... args) {
+        Application.launch(Explod2.class, args);
     }
 }

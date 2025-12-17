@@ -5,6 +5,8 @@ module xyz.nick.explod {
     requires kotlin.stdlib;
     requires javafx.graphics;
     requires javafx.base;
+    requires java.desktop;
+    requires annotations;
 
 
     opens xyz.nick.explod to javafx.fxml;

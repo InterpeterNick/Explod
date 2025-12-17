@@ -11,13 +11,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
@@ -26,86 +23,66 @@ public final class Explod2 extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Explod2.initItemsAndExplosions();
         FXMLLoader fxmlLoader = new FXMLLoader(TITLE.class.getResource("title.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
     }
 
-    private static final Map<String, Integer> itemImageNameToIndexMap = new HashMap<>();
-    private static final Map<Integer, String> itemImageNameIndex = new HashMap<>();
-    private static final Map<Integer, Image> itemImageIndex = new HashMap<>();
-    private static final Map<String, Integer> explosionIndex = new HashMap<>();
+    private static final Map<Integer, Path> itemIndex = new HashMap<>();
+    private static final Map<Integer, Path> explosionIndex = new HashMap<>();
+    private static final Random random = new Random(-4_206_769_342_521L);
 
-    private static int IMAG_AMOUNT = 0;
+    private static int ITEM_IMAG_AMOUNT = 0;
 
     public static void initItemsAndExplosions(){
-        initItemImages();
-    }
-
-    public static void initItemImages(){
         try {
-            URI itemPlaceholder = Objects.requireNonNull(TITLE.class.getResource("item/placeholder.txt")).toURI();
-            Path itemPath = Path.of(itemPlaceholder).resolve("..");
-            try(Stream<Path> pathStream = Files.list(itemPath)){
-                AtomicInteger i = new AtomicInteger();
-                pathStream.forEach(
-                        (path -> {
-                            if(Files.isDirectory(path)) return;
-                            String fileName = String.valueOf(path.getFileName());
-                            if(fileName.contains(".txt")) return;
-                            itemImageNameToIndexMap.put(fileName, i.get());
-                            itemImageNameIndex.put(i.get(), fileName);
-                            try {
-                                Image imag = new Image(path.toUri().toURL().toString());
-                                itemImageIndex.put(i.get(), imag);
-                                //System.out.println("\t"+fileName+" "+i.get()+" "+imag);
-                            } catch (MalformedURLException e) {
-                                throw new RuntimeException(e);
-                            }
-                            i.getAndIncrement();
-                        })
-                );
-                IMAG_AMOUNT = i.get() + 1;
-            }
-        } catch (URISyntaxException | NullPointerException | IOException e) {
+            initItemImages();
+            initExplosionImages();
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static int getRandomItemImageIndex(){
-        Random random = new Random(-4_206_769_342_521L);
-        return random.nextInt(IMAG_AMOUNT);
+    public static void initItemImages() throws IOException {
+        Path itemPath = getResource("item");
+        try(Stream<Path> pathStream = Files.list(itemPath)) {
+            AtomicInteger i = new AtomicInteger();
+            pathStream.forEach(
+                    (path -> {
+                        if(Files.isDirectory(path)) return;
+                        Path fileName = path.getFileName();
+                        if(fileName.toString().contains(".txt")) return;
+                        itemIndex.put(i.get(), path);
+                        i.getAndIncrement();
+                    })
+            );
+            ITEM_IMAG_AMOUNT = i.get();
+        }
     }
 
-    public static Image getItemImage(String name){
-        int index = itemImageNameToIndexMap.get(name);
-        return itemImageIndex.get(index);
+    public static void initExplosionImages() throws IOException {
+        itemIndex.forEach((key, value) -> System.out.println(key+" "+value.getFileName()));
     }
 
-    public static Image getItemImage(int index){
-        return itemImageIndex.get(index);
+    public static int getRandomItemIndex(){
+        return random.nextInt(0, ITEM_IMAG_AMOUNT);
     }
 
-    public static int getItemImageIndex(String name){
-        return itemImageNameToIndexMap.get(name);
-    }
-
-    public static String getImageName(int index){
-        return itemImageNameIndex.get(index);
+    public static Path getItem(int index){
+        return itemIndex.get(index);
     }
 
     public static Image defaultApple(){
-        return new Image(Objects.requireNonNull(TITLE.class.getResource("item/the-classic.jpg")).toExternalForm());
+        return new Image(getResource("item/the-classic.jpg").toUri().toString());
     }
 
     public static Image defaultExplosionImage(){
-        return new Image(Objects.requireNonNull(TITLE.class.getResource("explosion/the-classic.jpeg")).toExternalForm());
+        return new Image(getResource("explosion/the-classic.jpeg").toUri().toString());
     }
 
     public static Media defaultExplosionSFX(){
-        return new Media(Objects.requireNonNull(TITLE.class.getResource("explosion/explosion-289984.mp3")).toExternalForm());
+        return new Media(getResource("explosion/explosion-289984.mp3").toUri().toString());
     }
 
     public static void quitToTitle(ActionEvent e) throws IOException {
@@ -117,8 +94,7 @@ public final class Explod2 extends Application {
         stage.show();
     }
 
-    public static void launch(String... args){
-        System.out.println("Launching...");
-        Application.launch(Explod2.class, args);
+    public static Path getResource(String name){
+        return Path.of("resources").resolve(name);
     }
 }

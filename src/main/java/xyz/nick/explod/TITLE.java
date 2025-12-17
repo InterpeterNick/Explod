@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -33,7 +34,16 @@ public class TITLE implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initialUI();
+    }
+
+    @FXML
+    public void initialUI(){
+        resetMenuPane();
         button0.setText("PLAY");
+        button0.setTextFill(Color.YELLOW);
+        button1.setText("SETTINGS");
+
         button0.onActionProperty().set((ActionEvent e) -> {
             try {
                 this.play(e);
@@ -41,7 +51,26 @@ public class TITLE implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
+        button1.onActionProperty().set((ActionEvent e) -> {
+            try {
+                this.settings(e);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
         button0.setVisible(true);
+        button1.setVisible(true);
+    }
+
+    @FXML
+    public void settings(ActionEvent e) throws IOException {
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(TITLE.class.getResource("settings.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("settings");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -67,16 +96,7 @@ public class TITLE implements Initializable {
             }
         });
         button3.onActionProperty().set((ActionEvent e1) -> {
-            resetMenuPane();
-            button0.setText("PLAY");
-            button0.onActionProperty().set((ActionEvent e2) -> {
-                try {
-                    this.play(e);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-            button0.setVisible(true);
+            initialUI();
         });
 
         button0.setVisible(true);
@@ -120,6 +140,7 @@ public class TITLE implements Initializable {
                 (Node node) -> {
                     if(!(node instanceof Button b)) return;
                     b.setVisible(false);
+                    b.setTextFill(Color.BLACK);
                     b.setText(null);
                     b.onActionProperty().set(null);
                 }
