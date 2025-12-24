@@ -88,6 +88,13 @@ public class TITLE implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
+        button1.onActionProperty().set((ActionEvent ev) -> {
+            try {
+                this.play3D(ev);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         button2.onActionProperty().set((ActionEvent ev) -> {
             try {
                 this.playClassic(ev);
