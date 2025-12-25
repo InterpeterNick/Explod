@@ -61,7 +61,7 @@
             </FlowPane>
          </children>
       </VBox>
-      <Label layoutX="14.0" layoutY="475.0" prefHeight="18.0" prefWidth="367.0" text="Chistmas build. (202500350)" />
+      <Label layoutX="14.0" layoutY="475.0" prefHeight="18.0" prefWidth="367.0" text="Christmas Build. (202500350)" />
       <Label layoutX="13.0" layoutY="488.0" text="© 2025 Nicolas F. &quot;epic pro omega quack gamer le sussy baka&quot; Costa" />
       <Label layoutX="519.0" layoutY="488.0" text="To XxpedRO3038xX, Thank you." />
    </children>
