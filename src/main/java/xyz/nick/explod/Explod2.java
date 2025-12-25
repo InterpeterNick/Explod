@@ -10,7 +10,6 @@ import javafx.scene.media.Media;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -31,14 +30,18 @@ public final class Explod2 extends Application {
 
     private static final Map<Integer, Path> itemIndex = new HashMap<>();
     private static final Map<Integer, Path> explosionIndex = new HashMap<>();
+    private static final Map<Integer, Path> explosionSoundIndex = new HashMap<>();
     private static final Random random = new Random(-4_206_769_342_521L);
 
     private static int ITEM_IMAG_AMOUNT = 0;
+    private static int EXPLOD_IMAG_AMOUNT = 0;
+    private static int EXPLOD_SOUND_AMOUNT = 0;
 
     public static void initItemsAndExplosions(){
         try {
             initItemImages();
             initExplosionImages();
+            initExplosionSound();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -62,15 +65,58 @@ public final class Explod2 extends Application {
     }
 
     public static void initExplosionImages() throws IOException {
-        itemIndex.forEach((key, value) -> System.out.println(key+" "+value.getFileName()));
+        Path itemPath = getResource("explosion");
+        try(Stream<Path> pathStream = Files.list(itemPath)) {
+            AtomicInteger i = new AtomicInteger();
+            pathStream.forEach(
+                    (path -> {
+                        if(Files.isDirectory(path)) return;
+                        Path fileName = path.getFileName();
+                        if(fileName.toString().contains(".txt")) return;
+                        if(fileName.toString().contains(".mp3")) return;
+                        explosionIndex.put(i.get(), path);
+                        i.getAndIncrement();
+                    })
+            );
+            EXPLOD_IMAG_AMOUNT = i.get();
+        }
+    }
+
+    public static void initExplosionSound() throws IOException {
+        Path itemPath = getResource("sound");
+        try(Stream<Path> pathStream = Files.list(itemPath)) {
+            AtomicInteger i = new AtomicInteger();
+            pathStream.forEach(
+                    (path -> {
+                        if(Files.isDirectory(path)) return;
+                        Path fileName = path.getFileName();
+                        if(!fileName.toString().contains(".mp3")) return;
+                        explosionSoundIndex.put(i.get(), path);
+                        i.getAndIncrement();
+                    })
+            );
+            EXPLOD_SOUND_AMOUNT = i.get();
+        }
     }
 
     public static int getRandomItemIndex(){
         return random.nextInt(0, ITEM_IMAG_AMOUNT);
     }
+    public static int getRandomExplosionIndex(){
+        return random.nextInt(0, EXPLOD_IMAG_AMOUNT);
+    }
+    public static int getRandomExplosionSoundIndex(){
+        return random.nextInt(0, EXPLOD_SOUND_AMOUNT);
+    }
 
     public static Path getItem(int index){
         return itemIndex.get(index);
+    }
+    public static Path getExplosion(int index){
+        return explosionIndex.get(index);
+    }
+    public static Path getExplosionSFX(int index){
+        return explosionSoundIndex.get(index);
     }
 
     public static Image defaultApple(){
@@ -82,7 +128,7 @@ public final class Explod2 extends Application {
     }
 
     public static Media defaultExplosionSFX(){
-        return new Media(getResource("explosion/explosion-289984.mp3").toUri().toString());
+        return new Media(getResource("explosion/the-classic.mp3").toUri().toString());
     }
 
     public static void quitToTitle(ActionEvent e) throws IOException {
@@ -95,6 +141,9 @@ public final class Explod2 extends Application {
     }
 
     public static Path getResource(String name){
+        return Path.of("resources").resolve(name);
+    }
+    public static Path getResource(Path name){
         return Path.of("resources").resolve(name);
     }
 }

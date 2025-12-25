@@ -22,6 +22,8 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.util.*;
 
+import static xyz.nick.explod.Explod2.*;
+
 public class APPLE implements Initializable {
 
     @FXML private AnchorPane root;
@@ -39,7 +41,7 @@ public class APPLE implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Explod2.initItemsAndExplosions();
+        initItemsAndExplosions();
         root.setOnKeyPressed((KeyEvent e) -> {
             if(e.getCode()==KeyCode.Q) rotate();
             if(e.getCode()==KeyCode.E) explod();
@@ -62,9 +64,25 @@ public class APPLE implements Initializable {
     @FXML
     public void explod(){
         if (hasExplod) return;
-        Media sfx = Explod2.defaultExplosionSFX();
-        MediaPlayer player = new MediaPlayer(sfx);
-        imag.setImage(Explod2.defaultExplosionImage());
+        Media explodSfx;
+        Image explodImag;
+        if(Settings.classicExplosionOnly){
+            explodSfx = defaultExplosionSFX();
+            explodImag = defaultExplosionImage();
+        } else {
+            int a = getRandomExplosionIndex();
+            int b = getRandomExplosionSoundIndex();
+            Path pi = getExplosion(a);
+            Path ps = getExplosionSFX(b);
+            try {
+                explodImag = new Image(pi.toUri().toURL().toString());
+                explodSfx = new Media(ps.toUri().toString());
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        MediaPlayer player = new MediaPlayer(explodSfx);
+        imag.setImage(explodImag);
         player.play();
         explods++;
         hasExplod = true;
@@ -79,11 +97,11 @@ public class APPLE implements Initializable {
         resets++;
         Path imagePath;
         if(Settings.DEBUG_MODE && !Objects.equals(itemTextField.getText(), "")){
-            imagePath = Explod2.getItem(Integer.parseInt(itemTextField.getText()));
+            imagePath = getItem(Integer.parseInt(itemTextField.getText()));
         } else {
-            index = Explod2.getRandomItemIndex();
+            index = getRandomItemIndex();
             indexOrder.add(index);
-            imagePath = Explod2.getItem(index);
+            imagePath = getItem(index);
         }
         Image image = null;
         try {

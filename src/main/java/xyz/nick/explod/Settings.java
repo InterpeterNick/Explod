@@ -22,9 +22,11 @@ public class Settings implements Initializable {
     @FXML private TextArea statsArea;
     @FXML private CheckBox greenCheckBox;
     @FXML private CheckBox debugCheckBox;
+    @FXML private CheckBox classicOnlyCheckbox;
 
     public static boolean green = false;
     public static boolean DEBUG_MODE = false;
+    public static boolean classicExplosionOnly = false;
 
     private int pr = 0;
 
@@ -39,6 +41,7 @@ public class Settings implements Initializable {
         statsArea.setText(stats);
         greenCheckBox.setSelected(green);
         debugCheckBox.setSelected(DEBUG_MODE);
+        classicOnlyCheckbox.setSelected(classicExplosionOnly);
     }
 
     @FXML
@@ -49,6 +52,11 @@ public class Settings implements Initializable {
     @FXML
     public void toggleGreen(){
         green = !green;
+    }
+
+    @FXML
+    public void toggleCEO(){
+        classicExplosionOnly = !classicExplosionOnly;
     }
 
     @FXML
