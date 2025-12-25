@@ -128,7 +128,7 @@ public final class Explod2 extends Application {
     }
 
     public static Media defaultExplosionSFX(){
-        return new Media(getResource("explosion/the-classic.mp3").toUri().toString());
+        return new Media(getResource("sound/the-classic.mp3").toUri().toString());
     }
 
     public static void quitToTitle(ActionEvent e) throws IOException {
