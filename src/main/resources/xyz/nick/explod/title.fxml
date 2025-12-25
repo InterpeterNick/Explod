@@ -15,7 +15,7 @@
                   <Font name="System Italic" size="150.0" />
                </font>
             </Label>
-            <Label fx:id="subtitle" layoutX="172.0" layoutY="165.0" prefHeight="70.0" prefWidth="195.0" rotate="0.5" text="release1">
+            <Label fx:id="subtitle" layoutX="172.0" layoutY="165.0" prefHeight="70.0" prefWidth="212.0" rotate="0.5" text="release">
                <font>
                   <Font name="System Bold" size="48.0" />
                </font>
@@ -61,7 +61,7 @@
             </FlowPane>
          </children>
       </VBox>
-      <Label layoutX="14.0" layoutY="475.0" text="version 1.0a" />
+      <Label layoutX="14.0" layoutY="475.0" prefHeight="18.0" prefWidth="367.0" text="Chistmas build. (202500350)" />
       <Label layoutX="13.0" layoutY="488.0" text="© 2025 Nicolas F. &quot;epic pro omega quack gamer le sussy baka&quot; Costa" />
       <Label layoutX="519.0" layoutY="488.0" text="To XxpedRO3038xX, Thank you." />
    </children>

@@ -1,6 +1,5 @@
 package xyz.nick.explod;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -124,12 +123,7 @@ public class TITLE implements Initializable {
 
     @FXML
     public void play3D(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TITLE.class.getResource("apple3D.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("nowin3D!");
-        stage.setScene(scene);
-        stage.show();
+        Apple3D.play3D(e);
     }
 
     @FXML
