@@ -4,9 +4,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane prefHeight="191.0" prefWidth="266.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xyz.nick.explod.CLASSIC">
-   <children>
-      <Button mnemonicParsing="false" onAction="#quitToTitle" text="QUIT TO TITLE" />
-      <ImageView fx:id="imag" fitHeight="241.0" fitWidth="249.0" onMouseClicked="#explod" pickOnBounds="true" preserveRatio="true" />
-   </children>
+<FlowPane prefHeight="191.0" prefWidth="266.0" xmlns="http://javafx.com/javafx/17.0.12"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="xyz.nick.explod.CLASSIC">
+    <Button mnemonicParsing="false" onAction="#quitToTitle" text="QUIT TO TITLE"/>
+    <ImageView fx:id="imag" fitHeight="241.0" fitWidth="249.0" onMouseClicked="#explod" pickOnBounds="true"
+               preserveRatio="true"/>
 </FlowPane>
