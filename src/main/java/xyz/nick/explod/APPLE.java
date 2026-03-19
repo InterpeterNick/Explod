@@ -31,6 +31,7 @@ public class APPLE implements Initializable {
     @FXML private Label itemLabel;
     @FXML private Label resetLabel;
     @FXML private Label explosionLabel;
+    @FXML private Label explosionName;
     @FXML private TextField itemTextField;
     @FXML private Rectangle overlay;
 
@@ -66,6 +67,7 @@ public class APPLE implements Initializable {
         if (hasExplod) return;
         Media explodSfx;
         Image explodImag;
+        String nameText = "%s";
         if(Settings.classicExplosionOnly){
             explodSfx = defaultExplosionSFX();
             explodImag = defaultExplosionImage();
@@ -80,6 +82,7 @@ public class APPLE implements Initializable {
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
+            nameText = nameText.formatted(getExplosion(a).getFileName().toString());
         }
         MediaPlayer player = new MediaPlayer(explodSfx);
         imag.setImage(explodImag);
@@ -88,6 +91,7 @@ public class APPLE implements Initializable {
         hasExplod = true;
         String labelText = "You have blown up %d items".formatted(explods);
         explosionLabel.setText(labelText);
+        explosionName.setText(nameText);
     }
 
     @FXML
