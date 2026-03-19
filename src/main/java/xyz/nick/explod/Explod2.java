@@ -24,6 +24,7 @@ public final class Explod2 extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TITLE.class.getResource("title.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("about dang time");
         stage.setScene(scene);
         stage.show();
     }
