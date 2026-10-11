@@ -137,7 +137,7 @@ public final class TITLE implements Initializable {
     }
 
     public void resetMenuPane(){
-        ((Pane)  menuPane.getChildren().getFirst()).getChildren().forEach(
+        ((Pane)  menuPane.getChildren().get(0)).getChildren().forEach(
                 (Node node) -> {
                     if(!(node instanceof Button b)) return;
                     b.setVisible(false);
