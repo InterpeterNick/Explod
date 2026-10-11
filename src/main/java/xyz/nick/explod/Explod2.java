@@ -143,7 +143,4 @@ public final class Explod2 extends Application {
     public static Path getResource(String name){
         return Path.of("resources").resolve(name);
     }
-    public static Path getResource(Path name){
-        return Path.of("resources").resolve(name);
-    }
 }

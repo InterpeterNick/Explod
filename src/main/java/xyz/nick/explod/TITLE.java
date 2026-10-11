@@ -26,11 +26,6 @@ public final class TITLE implements Initializable {
     @FXML private Button button2;
     @FXML private Button button3;
 
-    @FXML private AnchorPane titlePane;
-    @FXML private Label title;
-    @FXML private Label subtitle;
-    @FXML private Label titleNumber;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initialUI();
@@ -75,6 +70,7 @@ public final class TITLE implements Initializable {
     @FXML
     public void play(ActionEvent e) throws IOException {
         resetMenuPane();
+        System.out.println("PLAY! "+e);
         button0.setText("NORMAL MODE");
         button1.setText("Apple3D (Preview)");
         button2.setText("CLASSIC MODE");
@@ -101,9 +97,7 @@ public final class TITLE implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
-        button3.onActionProperty().set((ActionEvent e1) -> {
-            initialUI();
-        });
+        button3.onActionProperty().set((ActionEvent e1) -> initialUI());
 
         button0.setVisible(true);
         button1.setVisible(true);

@@ -133,8 +133,4 @@ public final class APPLE implements Initializable {
     public static int getResets(){
         return resets;
     }
-
-    public static LinkedList<Integer> getIndexOrder(){
-        return indexOrder;
-    }
 }
