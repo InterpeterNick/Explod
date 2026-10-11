@@ -64,9 +64,9 @@ public final class TITLE implements Initializable {
 
     @FXML
     public void settings(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TITLE.class.getResource("settings.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        var stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        var fxmlLoader = new FXMLLoader(TITLE.class.getResource("settings.fxml"));
+        var scene = new Scene(fxmlLoader.load());
         stage.setTitle("settings");
         stage.setScene(scene);
         stage.show();
@@ -113,9 +113,9 @@ public final class TITLE implements Initializable {
 
     @FXML
     public void playReborn(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TITLE.class.getResource("apple.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        var stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        var fxmlLoader = new FXMLLoader(TITLE.class.getResource("apple.fxml"));
+        var scene = new Scene(fxmlLoader.load());
         stage.setTitle("explod2!");
         stage.setScene(scene);
         stage.show();
@@ -128,8 +128,8 @@ public final class TITLE implements Initializable {
 
     @FXML
     public void playClassic(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TITLE.class.getResource("classic.fxml"));
+        var stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        var fxmlLoader = new FXMLLoader(TITLE.class.getResource("classic.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("classic");
         stage.setScene(scene);

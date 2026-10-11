@@ -26,7 +26,7 @@ public final class Settings implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String stats = """
+        var stats = """
                 You have...
                 Exploded %d items.
                 Reseted %d times.
@@ -65,7 +65,7 @@ public final class Settings implements Initializable {
     public void toggleDebugMode(){
         DEBUG_MODE = !DEBUG_MODE;
         if(DEBUG_MODE){
-            String str = """
+            var str = """
                     YOU ARE ACTIVATING DEBUG MODE.
                     Any and all achievements are now disabled.
                     """;

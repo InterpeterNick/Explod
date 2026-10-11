@@ -22,8 +22,8 @@ public final class Explod2 extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TITLE.class.getResource("title.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        var fxmlLoader = new FXMLLoader(TITLE.class.getResource("title.fxml"));
+        var scene = new Scene(fxmlLoader.load());
         stage.setTitle("about dang time");
         stage.setScene(scene);
         stage.show();
@@ -49,13 +49,13 @@ public final class Explod2 extends Application {
     }
 
     public static void initItemImages() throws IOException {
-        Path itemPath = getResource("item");
-        try(Stream<Path> pathStream = Files.list(itemPath)) {
-            AtomicInteger i = new AtomicInteger();
+        var itemPath = getResource("item");
+        try(var pathStream = Files.list(itemPath)) {
+            var i = new AtomicInteger();
             pathStream.forEach(
                     (path -> {
                         if(Files.isDirectory(path)) return;
-                        Path fileName = path.getFileName();
+                        var fileName = path.getFileName();
                         if(fileName.toString().contains(".txt")) return;
                         itemIndex.put(i.get(), path);
                         i.getAndIncrement();
@@ -66,13 +66,13 @@ public final class Explod2 extends Application {
     }
 
     public static void initExplosionImages() throws IOException {
-        Path itemPath = getResource("explosion");
-        try(Stream<Path> pathStream = Files.list(itemPath)) {
-            AtomicInteger i = new AtomicInteger();
+        var itemPath = getResource("explosion");
+        try(var pathStream = Files.list(itemPath)) {
+            var i = new AtomicInteger();
             pathStream.forEach(
                     (path -> {
                         if(Files.isDirectory(path)) return;
-                        Path fileName = path.getFileName();
+                        var fileName = path.getFileName();
                         if(fileName.toString().contains(".txt")) return;
                         if(fileName.toString().contains(".mp3")) return;
                         explosionIndex.put(i.get(), path);
@@ -84,13 +84,13 @@ public final class Explod2 extends Application {
     }
 
     public static void initExplosionSound() throws IOException {
-        Path itemPath = getResource("sound");
-        try(Stream<Path> pathStream = Files.list(itemPath)) {
+        var itemPath = getResource("sound");
+        try(var pathStream = Files.list(itemPath)) {
             AtomicInteger i = new AtomicInteger();
             pathStream.forEach(
                     (path -> {
                         if(Files.isDirectory(path)) return;
-                        Path fileName = path.getFileName();
+                        var fileName = path.getFileName();
                         if(!fileName.toString().contains(".mp3")) return;
                         explosionSoundIndex.put(i.get(), path);
                         i.getAndIncrement();
@@ -133,9 +133,9 @@ public final class Explod2 extends Application {
     }
 
     public static void quitToTitle(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(TITLE.class.getResource("title.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        var stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        var fxmlLoader = new FXMLLoader(TITLE.class.getResource("title.fxml"));
+        var scene = new Scene(fxmlLoader.load());
         stage.setTitle("about dang time.");
         stage.setScene(scene);
         stage.show();

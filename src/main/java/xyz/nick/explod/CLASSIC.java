@@ -35,8 +35,8 @@ public final class CLASSIC implements Initializable {
 
     @FXML
     public void explod(){
-        Media sfx = Explod2.defaultExplosionSFX();
-        MediaPlayer player = new MediaPlayer(sfx);
+        var sfx = Explod2.defaultExplosionSFX();
+        var player = new MediaPlayer(sfx);
         imag.setImage(Explod2.defaultExplosionImage());
         player.play();
     }

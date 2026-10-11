@@ -51,15 +51,10 @@ public final class APPLE implements Initializable {
         reset();
         imag.setRotationAxis(new Point3D(0,0,0));
         if(overlay!=null){
-            if(Settings.green){
-                overlay.opacityProperty().set(0.3);
-            } else {
-                overlay.opacityProperty().set(0.0);
-            }
+            if(Settings.green) overlay.opacityProperty().set(0.3);
+            else overlay.opacityProperty().set(0.0);
         }
-        if(Settings.DEBUG_MODE){
-            itemTextField.setVisible(true);
-        }
+        if(Settings.DEBUG_MODE) itemTextField.setVisible(true);
     }
 
     @FXML
@@ -67,15 +62,15 @@ public final class APPLE implements Initializable {
         if (hasExplod) return;
         Media explodSfx;
         Image explodImag;
-        String nameText = "%s";
+        var nameText = "%s";
         if(Settings.classicExplosionOnly){
             explodSfx = defaultExplosionSFX();
             explodImag = defaultExplosionImage();
         } else {
             int a = getRandomExplosionIndex();
             int b = getRandomExplosionSoundIndex();
-            Path pi = getExplosion(a);
-            Path ps = getExplosionSFX(b);
+            var pi = getExplosion(a);
+            var ps = getExplosionSFX(b);
             try {
                 explodImag = new Image(pi.toUri().toURL().toString());
                 explodSfx = new Media(ps.toUri().toString());
@@ -84,12 +79,12 @@ public final class APPLE implements Initializable {
             }
             nameText = nameText.formatted(getExplosion(a).getFileName().toString());
         }
-        MediaPlayer player = new MediaPlayer(explodSfx);
+        var player = new MediaPlayer(explodSfx);
         imag.setImage(explodImag);
         player.play();
         explods++;
         hasExplod = true;
-        String labelText = "You have blown up %d items".formatted(explods);
+        var labelText = "You have blown up %d items".formatted(explods);
         explosionLabel.setText(labelText);
         explosionName.setText(nameText);
     }
@@ -107,7 +102,7 @@ public final class APPLE implements Initializable {
             indexOrder.add(index);
             imagePath = getItem(index);
         }
-        Image image = null;
+        Image image;
         try {
             image = new Image(imagePath.toUri().toURL().toString());
         } catch (MalformedURLException e) {

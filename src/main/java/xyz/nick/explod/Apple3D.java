@@ -36,12 +36,12 @@ public final class Apple3D implements Initializable {
     private static boolean rPressed;
 
     public static void play3D(ActionEvent e) {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        var stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
-        Group itemGroup = buildItemGroup(stage);
-        Scene scene = buildScene(itemGroup, stage);
+        var itemGroup = buildItemGroup(stage);
+        var scene = buildScene(itemGroup, stage);
 
-        AnimationTimer timer = buildAnimationTimer();
+        var timer = buildAnimationTimer();
         timer.start();
 
         stage.setTitle("nowin3D!");
@@ -50,12 +50,12 @@ public final class Apple3D implements Initializable {
     }
 
     private static Group buildItemGroup(Stage stage){
-        Sphere sphere = new Sphere(50);
-        PhongMaterial material = new PhongMaterial();
+        var sphere = new Sphere(50);
+        var material = new PhongMaterial();
         material.setDiffuseColor(Color.RED);
         sphere.setMaterial(material);
 
-        Group itemGroup = new Group();
+        var itemGroup = new Group();
         itemGroup.getChildren().add(sphere);
         itemGroup.setTranslateX(stage.getWidth() / 2);
         itemGroup.setTranslateY(stage.getHeight() / 2);
@@ -64,14 +64,14 @@ public final class Apple3D implements Initializable {
     }
 
     private static Scene buildScene(Group itemGroup, Stage stage) {
-        AmbientLight ambientLight = new AmbientLight(Color.WHITE);
+        var ambientLight = new AmbientLight(Color.WHITE);
         ambientLight.setLightOn(true);
 
         mainGroup = new Group(itemGroup, ambientLight);
         camera = new PerspectiveCamera();
         camera.setRotationAxis(new Point3D(0, 1, 0));
 
-        Button b = new Button("EXPLOD!");
+        var b = new Button("EXPLOD!");
         b.setOnAction((e) -> {
             Stage s = (Stage) ((Node) e.getSource()).getScene().getWindow();
             s.setScene(new Scene(new AnchorPane()));
@@ -79,7 +79,7 @@ public final class Apple3D implements Initializable {
         });
         mainGroup.getChildren().add(b);
 
-        Scene scene = new Scene(
+        var scene = new Scene(
                 mainGroup, stage.getWidth(), stage.getHeight(),
                 true, SceneAntialiasing.BALANCED);
         scene.getRoot();
@@ -131,8 +131,8 @@ public final class Apple3D implements Initializable {
     }
 
     private static void explod(){
-        Media explodSfx = defaultExplosionSFX();
-        MediaPlayer player = new MediaPlayer(explodSfx);
+        var explodSfx = defaultExplosionSFX();
+        var player = new MediaPlayer(explodSfx);
         player.play();
     }
 
