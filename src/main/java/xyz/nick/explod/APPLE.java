@@ -37,7 +37,6 @@ public final class APPLE implements Initializable {
     private static int resets = 0;
     private static int explods = 0;
     private boolean hasExplod = false;
-    private static final LinkedList<Integer> indexOrder = new LinkedList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -98,7 +97,6 @@ public final class APPLE implements Initializable {
             imagePath = getItem(Integer.parseInt(itemTextField.getText()));
         } else {
             index = getRandomItemIndex();
-            indexOrder.add(index);
             imagePath = getItem(index);
         }
         Image image;
