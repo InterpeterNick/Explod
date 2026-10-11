@@ -1,9 +1,3 @@
 Manifest-Version: 1.0
 Main-Class: xyz.nick.explod.Launcher
-Class-Path: javafx-controls-21.0.6-win.jar javafx-media-21.0.6-win.jar j
- avafx-base-21.0.6-win.jar kotlin-stdlib-jdk8-2.2.0.jar javafx-media-21.
- 0.6.jar javafx-graphics-21.0.6.jar javafx-fxml-21.0.6.jar javafx-graphi
- cs-21.0.6-win.jar annotations-13.0.jar javafx-base-21.0.6.jar kotlin-st
- dlib-2.2.0.jar kotlin-stdlib-jdk7-2.2.0.jar javafx-controls-21.0.6.jar 
- javafx-fxml-21.0.6-win.jar
 
