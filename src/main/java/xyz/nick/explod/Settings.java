@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Settings implements Initializable {
+public final class Settings implements Initializable {
     @FXML private TextArea statsArea;
     @FXML private CheckBox greenCheckBox;
     @FXML private CheckBox debugCheckBox;

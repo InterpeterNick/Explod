@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class TITLE implements Initializable {
+public final class TITLE implements Initializable {
 
     @FXML private VBox menuPane;
     @FXML private Button button0;

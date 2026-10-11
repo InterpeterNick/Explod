@@ -24,7 +24,7 @@ import java.util.*;
 
 import static xyz.nick.explod.Explod2.*;
 
-public class APPLE implements Initializable {
+public final class APPLE implements Initializable {
 
     @FXML private AnchorPane root;
     @FXML private ImageView imag;

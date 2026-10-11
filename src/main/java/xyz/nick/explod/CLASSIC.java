@@ -23,7 +23,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
-public class CLASSIC implements Initializable {
+public final class CLASSIC implements Initializable {
 
     @FXML
     private ImageView imag;

@@ -4,7 +4,7 @@ import javafx.application.Application;
 
 import javax.swing.*;
 
-public class Launcher {
+public final class Launcher {
     public static void main(String... args) {
         JOptionPane.showConfirmDialog(
                 null,

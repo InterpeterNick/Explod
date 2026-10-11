@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 import static xyz.nick.explod.Explod2.defaultExplosionSFX;
 
-public class Apple3D implements Initializable {
+public final class Apple3D implements Initializable {
 
     private static final double SPEED = 10;
 
