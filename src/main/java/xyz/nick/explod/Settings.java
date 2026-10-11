@@ -4,19 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Settings implements Initializable {
     @FXML private TextArea statsArea;

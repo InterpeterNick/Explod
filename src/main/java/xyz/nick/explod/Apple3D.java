@@ -14,7 +14,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
 import javafx.stage.Stage;
-import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -64,7 +63,6 @@ public class Apple3D implements Initializable {
         return itemGroup;
     }
 
-    @NotNull
     private static Scene buildScene(Group itemGroup, Stage stage) {
         AmbientLight ambientLight = new AmbientLight(Color.WHITE);
         ambientLight.setLightOn(true);
