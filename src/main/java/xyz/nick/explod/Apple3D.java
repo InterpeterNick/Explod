@@ -115,7 +115,6 @@ public class Apple3D implements Initializable {
             @Override
             public void handle(long now) {
                 double prevX = mainGroup.getTranslateX();
-                double prevY = mainGroup.getTranslateY();
                 double prevZ = mainGroup.getTranslateZ();
 
                 double prevR = mainGroup.getRotate();

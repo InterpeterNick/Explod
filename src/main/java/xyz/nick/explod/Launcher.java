@@ -3,7 +3,6 @@ package xyz.nick.explod;
 import javafx.application.Application;
 
 import javax.swing.*;
-import java.util.Scanner;
 
 public class Launcher {
     public static void main(String... args) {
