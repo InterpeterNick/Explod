@@ -8,14 +8,19 @@
 
 <AnchorPane prefHeight="513.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xyz.nick.explod.TITLE">
     <AnchorPane fx:id="titlePane" layoutY="32.0" prefHeight="247.0" prefWidth="506.0">
-        <Label fx:id="title" layoutX="14.0" layoutY="28.0" prefHeight="219.0" prefWidth="445.0" text="Explod">
+        <Label fx:id="title" layoutX="14.0" layoutY="27.0" prefHeight="219.0" prefWidth="445.0" text="Explod">
             <font>
                 <Font name="System Italic" size="150.0" />
             </font>
         </Label>
-        <Label fx:id="subtitle" layoutX="172.0" layoutY="165.0" prefHeight="70.0" prefWidth="212.0" rotate="0.5" text="release">
+        <Label fx:id="titleNumber" layoutX="446.0" layoutY="-11.0" text="2" textFill="#e7ff00">
             <font>
-                <Font name="System Bold" size="48.0" />
+                <Font name="System Bold" size="96.0" />
+            </font>
+        </Label>
+        <Label fx:id="subtitle" layoutX="170.0" layoutY="155.0" prefHeight="89.0" prefWidth="217.0" rotate="0.5" text="Farewell">
+            <font>
+                <Font name="System Bold Italic" size="50.0" />
             </font>
             <textFill>
                 <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.34469698414658057">
@@ -33,11 +38,6 @@
                     </stops>
                 </LinearGradient>
             </textFill>
-        </Label>
-        <Label fx:id="titleNumber" layoutX="446.0" layoutY="-11.0" text="2" textFill="#e7ff00">
-            <font>
-                <Font name="System Bold" size="96.0" />
-            </font>
         </Label>
     </AnchorPane>
     <VBox fx:id="menuPane" layoutX="146.0" layoutY="279.0" prefHeight="156.0" prefWidth="236.0">
